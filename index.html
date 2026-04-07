@@ -110,7 +110,6 @@
     .link-card:nth-child(6) { animation-delay: 0.6s; }
     .link-card:nth-child(7) { animation-delay: 0.7s; }
     .link-card:nth-child(8) { animation-delay: 0.8s; }
-    .link-card:nth-child(9) { animation-delay: 0.9s; }
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
@@ -180,6 +179,94 @@
       background-size: 200% 100%;
       animation: shimmer 3s ease-in-out infinite;
     }
+
+    /* Kindle dropdown cards */
+    .kindle-card-wrapper {
+      opacity: 0;
+      animation: fadeIn 0.4s ease forwards;
+    }
+    .kindle-card-wrapper:nth-child(8) { animation-delay: 0.8s; }
+    .kindle-card-wrapper:nth-child(9) { animation-delay: 0.9s; }
+
+    .kindle-header {
+      display: flex;
+      align-items: center;
+      background: #1E293B;
+      border-radius: 12px;
+      padding: 16px;
+      color: #FFFFFF;
+      border-left: 3px solid #D4A543;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      user-select: none;
+    }
+    .kindle-header.teal { border-left-color: #14B8A6; }
+
+    .kindle-header:hover {
+      background: #263348;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(212, 165, 67, 0.15);
+    }
+    .kindle-header.teal:hover {
+      box-shadow: 0 4px 20px rgba(20, 184, 166, 0.15);
+    }
+
+    .kindle-header .link-arrow {
+      transition: transform 0.2s, color 0.2s;
+    }
+    .kindle-card-wrapper.open .kindle-header .link-arrow {
+      transform: rotate(90deg);
+    }
+    .kindle-header:hover .link-arrow { color: #D4A543; }
+    .kindle-header.teal:hover .link-arrow { color: #14B8A6; }
+
+    .kindle-dropdown {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    .kindle-card-wrapper.open .kindle-dropdown {
+      max-height: 200px;
+    }
+
+    .kindle-sublink {
+      display: flex;
+      align-items: center;
+      padding: 12px 16px 12px 24px;
+      background: #151E2E;
+      text-decoration: none;
+      color: #FFFFFF;
+      border-left: 3px solid #D4A543;
+      margin-left: 16px;
+      transition: background 0.2s;
+      font-size: 14px;
+    }
+    .kindle-sublink:first-child {
+      border-radius: 0;
+      margin-top: 4px;
+    }
+    .kindle-sublink:last-child {
+      border-radius: 0 0 8px 8px;
+    }
+    .kindle-sublink:hover {
+      background: #1a2640;
+    }
+    .kindle-sublink.teal {
+      border-left-color: #14B8A6;
+    }
+    .kindle-sublink .sub-icon {
+      margin-right: 10px;
+      font-size: 16px;
+    }
+    .kindle-sublink .sub-title {
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .kindle-sublink .sub-arrow {
+      margin-left: auto;
+      color: #64748B;
+      font-size: 14px;
+    }
   </style>
 </head>
 <body>
@@ -207,7 +294,7 @@
         <span class="link-icon">&#9997;&#65039;</span>
         <div class="link-text">
           <div class="link-title">Read on Medium</div>
-          <div class="link-subtitle">English articles on systematic trading & AI tools</div>
+          <div class="link-subtitle">English articles on systematic trading &amp; AI tools</div>
         </div>
         <span class="link-arrow">&#8250;</span>
       </a>
@@ -252,33 +339,75 @@
         <span class="link-icon">&#128202;</span>
         <div class="link-text">
           <div class="link-title">DataViz Studio</div>
-          <div class="link-subtitle">Strategy comparison & trading analytics dashboard</div>
+          <div class="link-subtitle">Strategy comparison &amp; trading analytics dashboard</div>
         </div>
         <span class="link-arrow">&#8250;</span>
       </a>
 
-      <a class="link-card teal" href="https://www.amazon.co.jp/dp/B0FZ37FKJ9" target="_blank" rel="noopener">
-        <span class="link-icon">&#128218;</span>
-        <div class="link-text">
-          <div class="link-title">Kindle（日本語版）</div>
-          <div class="link-subtitle">ゼロから始めるデイトレーディング Vol.1 &amp; Vol.2</div>
+      <div class="kindle-card-wrapper" onclick="toggleKindle(this, event)">
+        <div class="kindle-header teal">
+          <span class="link-icon">&#128218;</span>
+          <div class="link-text">
+            <div class="link-title">Kindle&#65288;&#26085;&#26412;&#35486;&#29256;&#65289;</div>
+            <div class="link-subtitle">&#12476;&#12525;&#12363;&#12425;&#22987;&#12417;&#12427;&#12487;&#12452;&#12488;&#12524;&#12540;&#12487;&#12451;&#12531;&#12464;</div>
+          </div>
+          <span class="link-arrow">&#8250;</span>
         </div>
-        <span class="link-arrow">&#8250;</span>
-      </a>
+        <div class="kindle-dropdown">
+          <a class="kindle-sublink teal" href="https://www.amazon.co.jp/dp/B0FZ37FKJ9" target="_blank" rel="noopener" onclick="event.stopPropagation()">
+            <span class="sub-icon">&#128216;</span>
+            <span class="sub-title">Vol.1 &#22522;&#30990;&#32232;</span>
+            <span class="sub-arrow">&#8250;</span>
+          </a>
+          <a class="kindle-sublink teal" href="https://www.amazon.co.jp/dp/B0G2QZKYP1" target="_blank" rel="noopener" onclick="event.stopPropagation()">
+            <span class="sub-icon">&#128215;</span>
+            <span class="sub-title">Vol.2 &#23455;&#36341;&#32232;</span>
+            <span class="sub-arrow">&#8250;</span>
+          </a>
+        </div>
+      </div>
 
-      <a class="link-card" href="https://www.amazon.com/dp/B0GHPYB78D" target="_blank" rel="noopener" style="border-left-color: #D4A543;">
-        <span class="link-icon">&#128214;</span>
-        <div class="link-text">
-          <div class="link-title">Kindle (English Edition)</div>
-          <div class="link-subtitle">Day Trading from Zero — Vol.1 &amp; Vol.2 (Worldwide)</div>
+      <div class="kindle-card-wrapper" onclick="toggleKindle(this, event)">
+        <div class="kindle-header">
+          <span class="link-icon">&#128214;</span>
+          <div class="link-text">
+            <div class="link-title">Kindle (English Edition)</div>
+            <div class="link-subtitle">Day Trading from Zero &mdash; Worldwide</div>
+          </div>
+          <span class="link-arrow">&#8250;</span>
         </div>
-        <span class="link-arrow">&#8250;</span>
-      </a>
+        <div class="kindle-dropdown">
+          <a class="kindle-sublink" href="https://www.amazon.com/dp/B0GHPYB78D" target="_blank" rel="noopener" onclick="event.stopPropagation()">
+            <span class="sub-icon">&#128216;</span>
+            <span class="sub-title">Vol.1 Foundations</span>
+            <span class="sub-arrow">&#8250;</span>
+          </a>
+          <a class="kindle-sublink" href="https://www.amazon.com/dp/B0F1QFN6HJ" target="_blank" rel="noopener" onclick="event.stopPropagation()">
+            <span class="sub-icon">&#128215;</span>
+            <span class="sub-title">Vol.2 Advanced</span>
+            <span class="sub-arrow">&#8250;</span>
+          </a>
+        </div>
+      </div>
     </div>
 
     <div class="footer">&copy; Technical Trading Academy</div>
   </div>
 
   <div class="bottom-bar"></div>
+
+  <script>
+    function toggleKindle(wrapper, event) {
+      if (event.target.closest('a')) return;
+      wrapper.classList.toggle('open');
+    }
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.kindle-card-wrapper')) {
+        document.querySelectorAll('.kindle-card-wrapper.open').forEach(function(el) {
+          el.classList.remove('open');
+        });
+      }
+    });
+  </script>
 </body>
 </html>
