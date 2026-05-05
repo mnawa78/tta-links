@@ -191,6 +191,11 @@
     .dropdown-wrapper:nth-child(9) { animation-delay: 0.9s; }
     .dropdown-wrapper:nth-child(10) { animation-delay: 1.0s; }
 
+    /* Full-width single-column cards inside the grid */
+    .link-card.wide {
+      grid-column: 1 / -1;
+    }
+
     .dropdown-header {
       display: flex;
       align-items: center;
@@ -348,7 +353,7 @@
         <span class="link-arrow">&#8250;</span>
       </a>
 
-      <a class="link-card" href="https://techacademies.org/newsletter" target="_blank" rel="noopener">
+      <a class="link-card wide" href="https://techacademies.org/newsletter" target="_blank" rel="noopener">
         <span class="link-icon">&#128233;</span>
         <div class="link-text">
           <div class="link-title">Newsletter</div>
