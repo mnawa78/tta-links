@@ -42,7 +42,7 @@
     }
 
     .container {
-      max-width: 480px;
+      max-width: 760px;
       width: 100%;
       margin: 0 auto;
       padding: 32px 20px 24px;
@@ -82,8 +82,8 @@
 
     .links {
       width: 100%;
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 12px;
       margin-bottom: 32px;
     }
@@ -110,6 +110,7 @@
     .link-card:nth-child(6) { animation-delay: 0.6s; }
     .link-card:nth-child(7) { animation-delay: 0.7s; }
     .link-card:nth-child(8) { animation-delay: 0.8s; }
+    .link-card:nth-child(9) { animation-delay: 0.9s; }
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
@@ -184,10 +185,11 @@
     .dropdown-wrapper {
       opacity: 0;
       animation: fadeIn 0.4s ease forwards;
+      grid-column: 1 / -1;
     }
-    .dropdown-wrapper:nth-child(6) { animation-delay: 0.6s; }
-    .dropdown-wrapper:nth-child(7) { animation-delay: 0.7s; }
     .dropdown-wrapper:nth-child(8) { animation-delay: 0.8s; }
+    .dropdown-wrapper:nth-child(9) { animation-delay: 0.9s; }
+    .dropdown-wrapper:nth-child(10) { animation-delay: 1.0s; }
 
     .dropdown-header {
       display: flex;
@@ -297,6 +299,15 @@
         <div class="link-text">
           <div class="link-title">Technical Trading Academy</div>
           <div class="link-subtitle">Home of systematic, rule-based trading education</div>
+        </div>
+        <span class="link-arrow">&#8250;</span>
+      </a>
+
+      <a class="link-card" href="https://discord.gg/3KdEpkjYkv" target="_blank" rel="noopener">
+        <span class="link-icon">&#128172;</span>
+        <div class="link-text">
+          <div class="link-title">Join the Discord</div>
+          <div class="link-subtitle">Community for systematic traders &amp; AI builders</div>
         </div>
         <span class="link-arrow">&#8250;</span>
       </a>
